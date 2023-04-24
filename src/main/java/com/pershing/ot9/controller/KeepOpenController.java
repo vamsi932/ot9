@@ -1,5 +1,7 @@
 package com.pershing.ot9.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,13 +17,13 @@ import com.pershing.ot9.response.ResponseHandler;
 import com.pershing.ot9.service.KeepOpenService;
 
 @RestController
-@RequestMapping("/v1/ot9/keep-open")
+@RequestMapping("/v1/ot9")
 public class KeepOpenController {
 	
 	@Autowired
 	KeepOpenService keepOpenService;
 	
-	@GetMapping("/all-entities&pageNum={pageNum}&pageSize={pageSize}&direction={direction}&sortBy={sortBy}")
+	@GetMapping("/keep-open/all-entities&pageNum={pageNum}&pageSize={pageSize}&direction={direction}&sortBy={sortBy}")
 	public ResponseEntity<Object> getAllKeepOpen(@PathVariable String pageNum,
 												 @PathVariable String pageSize, 
 												 @PathVariable String direction, 
@@ -32,10 +34,10 @@ public class KeepOpenController {
 	}
 	
 	
-	@PostMapping("/")
-	public ResponseEntity<Object> saveKeepOpen(@RequestBody KeepOpenModel keepOpen) {
+	@PostMapping("/keep-open")
+	public ResponseEntity<Object> saveKeepOpen(@RequestBody(required = false) @Valid KeepOpenModel keepOpen) {
 		
-		return ResponseHandler.generateResponseJSONObject("Success", HttpStatus.CREATED, keepOpenService.saveKeepOpen(keepOpen));
+		return ResponseHandler.generateResponseJSONObject("Success", HttpStatus.CREATED, keepOpenService.saveKeepOpen(keepOpen) );
 		
 	}
 	

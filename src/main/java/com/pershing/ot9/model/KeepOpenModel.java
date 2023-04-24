@@ -1,8 +1,14 @@
 package com.pershing.ot9.model;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
+
 public class KeepOpenModel {
 	
 	
+	@NotBlank(message="Account number required")
+	@Size(min = 10, max = 10, message="Account number should be 10 digit")
 	private String accountNumber;
 	private String cusipId;
 	private String crtTs;
@@ -11,12 +17,15 @@ public class KeepOpenModel {
 	private String comSymId;
 	private String expiryDate;
 	private String strikePrice;
+	@Size(min=1, max=1, message = "SoftDelete should not more than 1 character")
+	@Pattern(regexp = "(Y|y|N|n)", message="SoftDelete is invalid value")
 	private String softDelete;
 	private String enteredBy;
 	
 	public String getAccountNumber() {
 		return accountNumber;
 	}
+	
 	public void setAccountNumber(String accountNumber) {
 		this.accountNumber = accountNumber;
 	}

@@ -16,8 +16,8 @@ public class KeepOpenService {
 	public KeepOpen saveKeepOpen(KeepOpenModel keepOpenModel) {
 		
 		KeepOpen keepOpen = new KeepOpen();
-		keepOpen.setAcctId(keepOpenModel.getAccountNumber().substring(0, 8));
-		keepOpen.setAcTypeCd(keepOpenModel.getAccountNumber().substring(8));
+		keepOpen.setAcctId(keepOpenModel.getAccountNumber().substring(0, 9));
+		keepOpen.setAcTypeCd(keepOpenModel.getAccountNumber().substring(9));
 		keepOpen.setCusipId(keepOpenModel.getCusipId());
 		keepOpen.setComSymId(keepOpenModel.getComSymId());
 		keepOpen.setUpdtUsrId(keepOpenModel.getUpdtUsrId());
