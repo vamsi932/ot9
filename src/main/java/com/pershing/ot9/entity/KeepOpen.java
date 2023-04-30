@@ -1,5 +1,7 @@
 package com.pershing.ot9.entity;
 
+import java.util.Date;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -38,6 +40,9 @@ public class KeepOpen {
 	
 	@Column(name="ACCT_CLAS_CD")
 	private String acctClasCd;
+	
+	@Column(name="EXPIRY_DATE")
+	private Date expiryDate;
 
 	public String getAcctId() {
 		return acctId;
@@ -102,7 +107,25 @@ public class KeepOpen {
 	public void setAcctClasCd(String acctClasCd) {
 		this.acctClasCd = acctClasCd;
 	}
-		
+
+	public Long getSequenceNumber() {
+		return sequenceNumber;
+	}
+
+	public void setSequenceNumber(Long sequenceNumber) {
+		this.sequenceNumber = sequenceNumber;
+	}
+
+	public Date getExpiryDate() {
+		return expiryDate;
+	}
+
+	public void setExpiryDate(Date expiryDate) {
+		this.expiryDate = expiryDate;
+	}
+	
+	
+	
 	
 
 }

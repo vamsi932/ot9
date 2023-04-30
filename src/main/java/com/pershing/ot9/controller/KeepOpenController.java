@@ -1,6 +1,7 @@
 package com.pershing.ot9.controller;
 
-import javax.validation.Valid;
+import java.text.ParseException;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -35,11 +36,19 @@ public class KeepOpenController {
 	
 	
 	@PostMapping("/keep-open")
-	public ResponseEntity<Object> saveKeepOpen(@RequestBody(required = false) @Valid KeepOpenModel keepOpen) {
-		
-		return ResponseHandler.generateResponseJSONObject("Success", HttpStatus.CREATED, keepOpenService.saveKeepOpen(keepOpen) );
+	public ResponseEntity<Object> saveKeepOpen(@RequestBody KeepOpenModel keepOpen) throws ParseException {
+		List<String> errors = keepOpenService.validate(keepOpen);
+		if(errors.size() > 0 ) {
+			return ResponseHandler.generateResponseJSONObject("Invalid Data", HttpStatus.BAD_REQUEST, 
+					errors 
+					);
+		}
+		return ResponseHandler.generateResponseJSONObject("Success", HttpStatus.CREATED, 
+				keepOpenService.saveKeepOpen(keepOpen) );
 		
 	}
+	
+	
 	
 	@GetMapping("keep-open")
 	public String testController() {
